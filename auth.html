@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Auth | Savora Bistro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-[#f8f5f2] flex flex-col items-center justify-center px-4">
+
+    <!-- Restaurant Name (Outside Card) -->
+    <div class="text-center mb-8">
+        <h1 class="text-4xl md:text-5xl font-bold text-[#3e2c23] tracking-wide">
+            Savora Bistro
+        </h1>
+        <p class="text-gray-600 mt-2 italic">
+            A Taste of Elegance in Every Bite
+        </p>
+    </div>
+
+    <!-- Auth Card -->
+    <div class="w-full max-w-5xl bg-white shadow-2xl rounded-2xl overflow-hidden grid md:grid-cols-2">
+
+        <!-- Left Image -->
+        <div class="hidden md:block">
+            <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2a/92/51/50/savora.jpg?w=900&h=500&s=1"
+                alt="Restaurant" class="w-full h-full object-cover" />
+        </div>
+
+        <!-- Right Form Area -->
+        <div class="p-10 flex flex-col justify-center">
+
+            <!-- Toggle -->
+            <div class="flex justify-center mb-8">
+                <button id="loginBtn"
+                    class="px-6 py-2 font-semibold border-b-2 border-[#3e2c23] text-[#3e2c23] transition">
+                    Login
+                </button>
+                <button id="registerBtn" class="px-6 py-2 font-semibold text-gray-400 transition">
+                    Register
+                </button>
+            </div>
+
+            <!-- Form Wrapper (Fixed Height) -->
+            <div class="relative h-[320px]">
+
+                <!-- Login Form -->
+                <form id="loginForm" class="absolute inset-0 space-y-5 transition-opacity duration-300">
+
+                    <div>
+                        <label class="block text-sm mb-1">Email</label>
+                        <input type="email" required
+                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#3e2c23] outline-none" />
+                    </div>
+
+                    <div>
+                        <label class="block text-sm mb-1">Password</label>
+                        <input type="password" required
+                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#3e2c23] outline-none" />
+                    </div>
+
+                    <button type="submit"
+                        class="w-full bg-[#3e2c23] text-white py-2 rounded-lg hover:bg-[#2e1f18] transition">
+                        Login
+                    </button>
+                </form>
+
+                <!-- Register Form -->
+                <form id="registerForm"
+                    class="absolute inset-0 space-y-5 opacity-0 pointer-events-none transition-opacity duration-300">
+
+                    <div>
+                        <label class="block text-sm mb-1">Full Name</label>
+                        <input type="text" required
+                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#3e2c23] outline-none" />
+                    </div>
+
+                    <div>
+                        <label class="block text-sm mb-1">Email</label>
+                        <input type="email" required
+                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#3e2c23] outline-none" />
+                    </div>
+
+                    <div>
+                        <label class="block text-sm mb-1">Password</label>
+                        <input type="password" required
+                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#3e2c23] outline-none" />
+                    </div>
+
+                    <button type="submit"
+                        class="w-full bg-[#3e2c23] text-white py-2 rounded-lg hover:bg-[#2e1f18] transition">
+                        Create Account
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- JS Toggle -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+    <script src="js/auth.js" defer></script>
+
+</body>
+
+</html>
