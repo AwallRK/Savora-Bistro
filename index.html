@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Home | Savora Bistro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-[#f8f5f2] text-gray-800">
+
+    <!-- LOGIN PROTECTION -->
+    <script>
+        if (localStorage.getItem("isLoggedIn") !== "true") {
+            window.location.href = "auth.html"
+        }
+    </script>
+
+    <!-- NAVBAR -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full py-4 px-8 flex justify-between items-center
+         transition-all duration-300 bg-transparent text-white z-50">
+
+        <h1 class="text-2xl font-bold">
+            Savora Bistro
+        </h1>
+
+        <div class="flex items-center gap-6">
+            <a href="index.html" class="font-semibold">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+
+            <span id="usernameDisplay" class="font-semibold"></span>
+
+            <button id="logoutBtn" onclick="logout()"
+                class="bg-white text-[#3e2c23] px-4 py-1 rounded-lg hover:bg-gray-200 transition">
+                Logout
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <!-- HERO SLIDER -->
+    <section class="relative h-[85vh] overflow-hidden">
+
+        <!-- Slides -->
+        <div id="slider" class="relative h-full">
+
+            <!-- Slide 1 -->
+            <div class="slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-100"
+                style="background-image: url('https://arenagourmet.com/userfiles/post/MEDI_AC3971B310AF4C9D9D3CC0B36A52FFB1_1442502121-23103165406EF917964.jpeg');">
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0"
+                style="background-image: url('https://arenagourmet.com/userfiles/post/6551cda67a463.jpg');">
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0"
+                style="background-image: url('https://arenagourmet.com/userfiles/post/6551cda7819ef.jpg');">
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0"
+                style="background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0');">
+            </div>
+
+        </div>
+
+        <!-- Overlay Content -->
+        <div class="absolute inset-0 bg-black/50 flex items-center justify-center text-white z-10">
+            <div class="text-center p-10 rounded-2xl">
+                <h2 class="text-5xl font-bold mb-4">
+                    Experience Fine Dining
+                </h2>
+                <p class="mb-6 text-lg italic">
+                    A Taste of Elegance in Every Bite
+                </p>
+                <a href="#menu" class="bg-[#3e2c23] px-6 py-3 rounded-lg hover:bg-[#2e1f18] transition">
+                    Explore Menu
+                </a>
+            </div>
+        </div>
+
+        <!-- Dots -->
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+            <div class="dot w-3 h-3 bg-white rounded-full opacity-100"></div>
+            <div class="dot w-3 h-3 bg-white rounded-full opacity-50"></div>
+            <div class="dot w-3 h-3 bg-white rounded-full opacity-50"></div>
+            <div class="dot w-3 h-3 bg-white rounded-full opacity-50"></div>
+        </div>
+
+    </section>
+
+    <!-- FEATURED MENU -->
+    <section id="menu" class="py-20 px-8 max-w-6xl mx-auto">
+        <h2 class="text-3xl font-bold text-center text-[#3e2c23] mb-12">
+            Featured Dishes
+        </h2>
+
+        <div class="grid md:grid-cols-3 gap-8">
+
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092"
+                    class="h-48 w-full object-cover" />
+                <div class="p-6">
+                    <h3 class="font-bold text-lg mb-2">Grilled Salmon</h3>
+                    <p class="text-sm text-gray-600 mb-4">
+                        Fresh Atlantic salmon with lemon butter sauce.
+                    </p>
+                    <p class="font-semibold text-[#3e2c23]">$24</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c" class="h-48 w-full object-cover" />
+                <div class="p-6">
+                    <h3 class="font-bold text-lg mb-2">Classic Pasta</h3>
+                    <p class="text-sm text-gray-600 mb-4">
+                        Handmade pasta with rich tomato basil sauce.
+                    </p>
+                    <p class="font-semibold text-[#3e2c23]">$18</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1550547660-d9450f859349" class="h-48 w-full object-cover" />
+                <div class="p-6">
+                    <h3 class="font-bold text-lg mb-2">Premium Steak</h3>
+                    <p class="text-sm text-gray-600 mb-4">
+                        Juicy ribeye steak cooked to perfection.
+                    </p>
+                    <p class="font-semibold text-[#3e2c23]">$32</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ABOUT PREVIEW -->
+    <section class="bg-white py-20 px-8">
+        <div class="max-w-5xl mx-auto text-center">
+            <h2 class="text-3xl font-bold text-[#3e2c23] mb-6">
+                About Savora Bistro
+            </h2>
+            <p class="text-gray-600 leading-relaxed">
+                Savora Bistro brings together culinary artistry and elegant ambiance.
+                Our chefs craft each dish with passion and precision, creating a dining
+                experience that delights every sense.
+            </p>
+        </div>
+    </section>
+
+    <!-- GALLERY PREVIEW -->
+    <section class="py-20 px-8 max-w-6xl mx-auto">
+        <h2 class="text-3xl font-bold text-center text-[#3e2c23] mb-12">
+            Our Ambience
+        </h2>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c" class="rounded-xl shadow-lg" />
+            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0" class="rounded-xl shadow-lg" />
+            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836" class="rounded-xl shadow-lg" />
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-[#3e2c23] text-white text-center py-16">
+        <h2 class="text-3xl font-bold mb-4">
+            Ready to Dine With Us?
+        </h2>
+        <p class="mb-6 italic">
+            Reserve your table today and enjoy an unforgettable experience.
+        </p>
+        <button class="bg-white text-[#3e2c23] px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition">
+            Make Reservation
+        </button>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-white py-6 text-center text-sm text-gray-500">
+        © 2026 Savora Bistro. All rights reserved.
+    </footer>
+
+    <!-- USER SCRIPT -->
+    <script>
+        const username = localStorage.getItem("currentUser")
+        document.getElementById("usernameDisplay").textContent = username
+
+        function logout() {
+            localStorage.removeItem("isLoggedIn")
+            localStorage.removeItem("currentUser")
+            window.location.href = "auth.html"
+        }
+    </script>
+
+    <!-- HERO SCRIPT -->
+    <script>
+        const slides = document.querySelectorAll(".slide")
+        const dots = document.querySelectorAll(".dot")
+
+        let current = 0
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove("opacity-100")
+                slide.classList.add("opacity-0")
+                dots[i].classList.remove("opacity-100")
+                dots[i].classList.add("opacity-50")
+            })
+
+            slides[index].classList.remove("opacity-0")
+            slides[index].classList.add("opacity-100")
+            dots[index].classList.remove("opacity-50")
+            dots[index].classList.add("opacity-100")
+        }
+
+        function nextSlide() {
+            current = (current + 1) % slides.length
+            showSlide(current)
+        }
+
+        setInterval(nextSlide, 4000)
+    </script>
+
+    <!-- NAVBAR SCRIPT -->
+    <script>
+        const navbar = document.getElementById("navbar")
+        const logoutBtn = document.getElementById("logoutBtn")
+
+        function setTransparentNav() {
+            navbar.classList.add("bg-transparent", "text-white")
+            navbar.classList.remove("bg-white", "text-[#3e2c23]", "shadow-md")
+
+            logoutBtn.classList.add("bg-white", "text-[#3e2c23]")
+            logoutBtn.classList.remove("bg-[#3e2c23]", "text-white")
+        }
+
+        function setSolidNav() {
+            navbar.classList.remove("bg-transparent", "text-white")
+            navbar.classList.add("bg-white", "text-[#3e2c23]", "shadow-md")
+
+            logoutBtn.classList.remove("bg-white", "text-[#3e2c23]")
+            logoutBtn.classList.add("bg-[#3e2c23]", "text-white")
+        }
+
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 50) {
+                setSolidNav()
+            } else {
+                setTransparentNav()
+            }
+        })
+
+        // Set default saat pertama load
+        setTransparentNav()
+    </script>
+</body>
+
+</html>

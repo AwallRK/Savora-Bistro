@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Contact - Savora Bistro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        .gold-text {
+            background: linear-gradient(135deg, #d4af37, #f5e6a7, #b8860b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group input,
+        .input-group textarea {
+            width: 100%;
+            padding: 16px;
+            background: transparent;
+            border: 1px solid #444;
+            border-radius: 12px;
+            outline: none;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .input-group input:focus,
+        .input-group textarea:focus {
+            border-color: #d4af37;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .input-group label {
+            position: absolute;
+            left: 16px;
+            top: 16px;
+            color: #888;
+            pointer-events: none;
+            transition: 0.3s;
+            background: #111;
+            padding: 0 6px;
+        }
+
+        .input-group input:focus+label,
+        .input-group input:not(:placeholder-shown)+label,
+        .input-group textarea:focus+label,
+        .input-group textarea:not(:placeholder-shown)+label {
+            top: -10px;
+            font-size: 12px;
+            color: #d4af37;
+        }
+    </style>
+</head>
+
+<body class="bg-black text-gray-300">
+    <!-- NAVBAR -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full py-4 px-8 flex justify-between items-center
+         transition-all duration-300 bg-transparent text-white z-50">
+
+        <h1 class="text-2xl font-bold">
+            Savora Bistro
+        </h1>
+
+        <div class="flex items-center gap-6">
+            <a href="index.html" class="font-semibold">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+
+            <span id="usernameDisplay" class="font-semibold"></span>
+
+            <button id="logoutBtn" onclick="logout()"
+                class="bg-white text-[#3e2c23] px-4 py-1 rounded-lg hover:bg-gray-200 transition">
+                Logout
+            </button>
+        </div>
+    </nav>
+    <!-- 🔥 Contact Section -->
+    <section class="py-24 bg-[#111]">
+        <div class="max-w-6xl mx-auto px-6">
+
+            <h1 class="text-4xl font-serif gold-text text-center mb-16">
+                Contact Savora Bistro
+            </h1>
+
+            <!-- 2 Column Layout -->
+            <div class="grid md:grid-cols-2 gap-16">
+
+                <!-- 📞 Contact Info -->
+                <div class="space-y-8">
+
+                    <div>
+                        <h2 class="text-xl text-white mb-2">📍 Address</h2>
+                        <p class="text-gray-400">
+                            Jl. Sudirman No. 88<br>
+                            Jakarta, Indonesia
+                        </p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-xl text-white mb-2">📞 Phone</h2>
+                        <p class="text-gray-400">+62 812 3456 7890</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-xl text-white mb-2">✉ Email</h2>
+                        <p class="text-gray-400">info@savorabistro.com</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-xl text-white mb-2">🕒 Opening Hours</h2>
+                        <p class="text-gray-400">
+                            Mon – Fri: 10:00 AM – 10:00 PM<br>
+                            Sat – Sun: 12:00 PM – 11:00 PM
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- 💌 Contact Form -->
+                <div class="bg-black p-10 rounded-2xl shadow-2xl border border-gray-800">
+
+                    <form id="contactForm" class="space-y-8">
+
+                        <div class="input-group">
+                            <input type="text" id="name" placeholder=" " required>
+                            <label for="name">Full Name</label>
+                        </div>
+
+                        <div class="input-group">
+                            <input type="email" id="email" placeholder=" " required>
+                            <label for="email">Email Address</label>
+                        </div>
+
+                        <div class="input-group">
+                            <textarea id="message" rows="5" placeholder=" " required></textarea>
+                            <label for="message">Your Message</label>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="px-10 py-4 bg-amber-500 text-black font-semibold rounded-full 
+                     hover:bg-amber-400 transition duration-300 shadow-lg">
+                                Send Message
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 📍 Google Maps -->
+    <section class="bg-black py-16">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-3xl font-serif gold-text text-center mb-10">
+                Find Us Here
+            </h2>
+
+            <div class="rounded-2xl overflow-hidden border border-gray-800 shadow-xl">
+                <iframe src="https://maps.google.com/maps?q=jakarta&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%"
+                    height="400" style="border:0;" allowfullscreen="" loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- ✅ Success Modal -->
+    <div id="successModal" class="fixed inset-0 bg-black/70 hidden items-center justify-center">
+
+        <div class="bg-[#111] border border-amber-500 p-10 rounded-2xl text-center max-w-sm">
+            <h2 class="text-2xl gold-text mb-4">Message Sent!</h2>
+            <p class="text-gray-400 mb-6">
+                Thank you for contacting Savora Bistro.
+            </p>
+            <button onclick="closeModal()"
+                class="px-6 py-2 bg-amber-500 text-black rounded-full hover:bg-amber-400 transition">
+                Close
+            </button>
+        </div>
+
+    </div>
+
+    <!-- 📲 Floating WhatsApp Button -->
+    <a href="https://wa.me/6281234567890" target="_blank" class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 
+          text-white w-14 h-14 rounded-full flex items-center 
+          justify-center text-2xl shadow-lg transition transform hover:scale-110">
+        💬
+    </a>
+
+    <!-- USER SCRIPT -->
+    <script>
+        const username = localStorage.getItem("currentUser")
+        document.getElementById("usernameDisplay").textContent = username
+
+        function logout() {
+            localStorage.removeItem("isLoggedIn")
+            localStorage.removeItem("currentUser")
+            window.location.href = "auth.html"
+        }
+    </script>
+
+    <!-- NAVBAR SCRIPT -->
+    <script>
+        const navbar = document.getElementById("navbar")
+        const logoutBtn = document.getElementById("logoutBtn")
+
+        function setTransparentNav() {
+            navbar.classList.add("bg-transparent", "text-white")
+            navbar.classList.remove("bg-white", "text-[#3e2c23]", "shadow-md")
+
+            logoutBtn.classList.add("bg-white", "text-[#3e2c23]")
+            logoutBtn.classList.remove("bg-[#3e2c23]", "text-white")
+        }
+
+        function setSolidNav() {
+            navbar.classList.remove("bg-transparent", "text-white")
+            navbar.classList.add("bg-white", "text-[#3e2c23]", "shadow-md")
+
+            logoutBtn.classList.remove("bg-white", "text-[#3e2c23]")
+            logoutBtn.classList.add("bg-[#3e2c23]", "text-white")
+        }
+
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 50) {
+                setSolidNav()
+            } else {
+                setTransparentNav()
+            }
+        })
+
+        // Set default saat pertama load
+        setTransparentNav()
+    </script>
+    <script>
+        const form = document.getElementById("contactForm");
+        const modal = document.getElementById("successModal");
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+            form.reset();
+        });
+
+        function closeModal() {
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+        }
+    </script>
+
+</body>
+
+</html>

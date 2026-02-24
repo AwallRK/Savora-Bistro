@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Savora Bistro | Gallery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* Fade In Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+
+    <!-- NAVBAR -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full py-4 px-8 flex justify-between items-center
+         transition-all duration-300 bg-transparent text-white z-50">
+
+        <h1 class="text-2xl font-bold">
+            Savora Bistro
+        </h1>
+
+        <div class="flex items-center gap-6">
+            <a href="index.html" class="font-semibold">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+
+            <span id="usernameDisplay" class="font-semibold"></span>
+
+            <button id="logoutBtn" onclick="logout()"
+                class="bg-white text-[#3e2c23] px-4 py-1 rounded-lg hover:bg-gray-200 transition">
+                Logout
+            </button>
+        </div>
+    </nav>
+
+
+    <section class="relative h-[60vh] overflow-hidden">
+
+        <div id="slider" class="absolute inset-0">
+            <div class="slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-100"
+                style="background-image:url('https://images.unsplash.com/photo-1544025162-d76694265947')"></div>
+
+            <div class="slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0"
+                style="background-image:url('https://images.unsplash.com/photo-1504754524776-8f4f37790ca0')"></div>
+
+            <div class="slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0"
+                style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0')"></div>
+        </div>
+
+        <div class="absolute inset-0 bg-black/40 flex items-center justify-center text-white z-10">
+            <div class="text-center">
+                <h2 class="text-5xl font-bold mb-4">Our Moments</h2>
+                <p class="italic">Experience the Atmosphere of Savora Bistro</p>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section class="py-20 px-8">
+
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-[#3e2c23] mb-3">Our Gallery</h2>
+            <p class="text-gray-600">Moments & Signature Dishes of Savora Bistro</p>
+        </div>
+
+        <div id="galleryGrid" class="grid md:grid-cols-3 gap-8"></div>
+
+    </section>
+
+    <footer class="bg-[#1a1a1a] text-gray-300 mt-24">
+        <div class="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+
+            <!-- Brand -->
+            <div>
+                <h3 class="text-2xl font-serif text-white mb-4 tracking-wide">
+                    Savora Bistro
+                </h3>
+                <p class="text-gray-400 leading-relaxed">
+                    Experience modern culinary artistry with a touch of elegance.
+                    Where flavors meet unforgettable moments.
+                </p>
+            </div>
+
+            <!-- Navigation -->
+            <div>
+                <h4 class="text-lg font-semibold text-white mb-4">Explore</h4>
+                <ul class="space-y-2">
+                    <li><a href="index.html" class="hover:text-amber-400 transition duration-300">Home</a></li>
+                    <li><a href="menu.html" class="hover:text-amber-400 transition duration-300">Menu</a></li>
+                    <li><a href="gallery.html" class="hover:text-amber-400 transition duration-300">Gallery</a></li>
+                    <li><a href="about.html" class="hover:text-amber-400 transition duration-300">About</a></li>
+                    <li><a href="contact.html" class="hover:text-amber-400 transition duration-300">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div>
+                <h4 class="text-lg font-semibold text-white mb-4">Contact</h4>
+                <p class="text-gray-400">Jl. Sudirman No. 88</p>
+                <p class="text-gray-400">Jakarta, Indonesia</p>
+                <p class="text-gray-400 mt-2">+62 812 3456 7890</p>
+                <p class="text-gray-400">info@savorabistro.com</p>
+            </div>
+
+            <!-- Opening Hours -->
+            <div>
+                <h4 class="text-lg font-semibold text-white mb-4">Opening Hours</h4>
+                <p class="text-gray-400">Mon – Fri: 10:00 AM – 10:00 PM</p>
+                <p class="text-gray-400">Sat – Sun: 12:00 PM – 11:00 PM</p>
+                <div class="mt-4 flex space-x-4 text-lg">
+                    <a href="#" class="hover:text-amber-400 transition transform hover:-translate-y-1">🌐</a>
+                    <a href="#" class="hover:text-amber-400 transition transform hover:-translate-y-1">📸</a>
+                    <a href="#" class="hover:text-amber-400 transition transform hover:-translate-y-1">🐦</a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bottom -->
+        <div class="border-t border-gray-800 text-center py-6 text-sm text-gray-500">
+            © 2026 Savora Bistro. All Rights Reserved.
+        </div>
+    </footer>
+
+
+    <!-- USER SCRIPT -->
+    <script>
+        const username = localStorage.getItem("currentUser")
+        document.getElementById("usernameDisplay").textContent = username
+
+        function logout() {
+            localStorage.removeItem("isLoggedIn")
+            localStorage.removeItem("currentUser")
+            window.location.href = "auth.html"
+        }
+    </script>
+
+    <!-- NAVBAR SCRIPT -->
+    <script>
+        const navbar = document.getElementById("navbar")
+        const logoutBtn = document.getElementById("logoutBtn")
+
+        function setTransparentNav() {
+            navbar.classList.add("bg-transparent", "text-white")
+            navbar.classList.remove("bg-white", "text-[#3e2c23]", "shadow-md")
+
+            logoutBtn.classList.add("bg-white", "text-[#3e2c23]")
+            logoutBtn.classList.remove("bg-[#3e2c23]", "text-white")
+        }
+
+        function setSolidNav() {
+            navbar.classList.remove("bg-transparent", "text-white")
+            navbar.classList.add("bg-white", "text-[#3e2c23]", "shadow-md")
+
+            logoutBtn.classList.remove("bg-white", "text-[#3e2c23]")
+            logoutBtn.classList.add("bg-[#3e2c23]", "text-white")
+        }
+
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 50) {
+                setSolidNav()
+            } else {
+                setTransparentNav()
+            }
+        })
+
+        // Set default saat pertama load
+        setTransparentNav()
+    </script>
+
+    <script>
+
+
+        /* ============================
+           AUTO SLIDER
+        ============================ */
+        const slides = document.querySelectorAll(".slide")
+        let currentSlide = 0
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove("opacity-100")
+            slides[currentSlide].classList.add("opacity-0")
+
+            currentSlide = (currentSlide + 1) % slides.length
+
+            slides[currentSlide].classList.remove("opacity-0")
+            slides[currentSlide].classList.add("opacity-100")
+        }
+
+        setInterval(nextSlide, 4000)
+        /* ============================
+           15 GALLERY IMAGES
+        ============================ */
+        const galleryImages = [
+            "https://images.unsplash.com/photo-1544025162-d76694265947",
+            "https://images.unsplash.com/photo-1550547660-d9450f859349",
+            "https://images.unsplash.com/photo-1473093226795-af9932fe5856",
+            "https://images.unsplash.com/photo-1414235077428-338989a2e8c0",
+            "https://images.unsplash.com/photo-1467003909585-2f8a72700288",
+            "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085",
+            "https://images.unsplash.com/photo-1551024601-bec78aea704b",
+            "https://images.unsplash.com/photo-1544025162-d76694265947",
+            "https://images.unsplash.com/photo-1559339352-11d035aa65de",
+            "https://images.unsplash.com/photo-1550547660-d9450f859349",
+            "https://images.unsplash.com/photo-1528605248644-14dd04022da1",
+            "https://images.unsplash.com/photo-1504674900247-0877df9cc836",
+            "https://images.unsplash.com/photo-1467003909585-2f8a72700288",
+            "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0",
+            "https://images.unsplash.com/photo-1473093226795-af9932fe5856"
+        ]
+
+        const galleryGrid = document.getElementById("galleryGrid")
+
+        galleryImages.forEach(src => {
+            galleryGrid.innerHTML += `
+    <div class="fade-in overflow-hidden rounded-2xl shadow-lg group cursor-pointer">
+      <img src="${src}" 
+        class="w-full h-72 object-cover transform group-hover:scale-110 transition duration-700 ease-in-out">
+    </div>
+  `
+        })
+        /* ============================
+           FADE-IN SCROLL
+        ============================ */
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show")
+                }
+            })
+        }, { threshold: 0.2 })
+
+        document.querySelectorAll(".fade-in").forEach(el => observer.observe(el))
+
+
+        /* ============================
+           PARALLAX EFFECT
+        ============================ */
+        window.addEventListener("scroll", () => {
+            document.querySelectorAll(".parallax-img").forEach(img => {
+                const speed = 0.15
+                const offset = window.scrollY * speed
+                img.style.transform = `translateY(${offset}px)`
+            })
+        })
+
+    </script>
+    </script>
+
+</body>
+
+</html>

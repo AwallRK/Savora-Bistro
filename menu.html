@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Savora Bistro | Menu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .active-filter {
+            background-color: #3e2c23 !important;
+            color: white !important;
+            border-color: #3e2c23 !important;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+
+    <!-- ================= NAVBAR ================= -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full py-4 px-8 flex justify-between items-center
+         transition-all duration-300 bg-transparent text-white z-50">
+
+        <h1 class="text-2xl font-bold">
+            Savora Bistro
+        </h1>
+
+        <div class="flex items-center gap-6">
+            <a href="index.html" class="font-semibold">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+
+            <span id="usernameDisplay" class="font-semibold"></span>
+
+            <button id="logoutBtn" onclick="logout()"
+                class="bg-white text-[#3e2c23] px-4 py-1 rounded-lg hover:bg-gray-200 transition">
+                Logout
+            </button>
+        </div>
+    </nav>
+
+    <!-- ================= HERO ================= -->
+    <section class="relative h-[85vh] overflow-hidden">
+
+        <!-- Slides -->
+        <div id="slider" class="relative h-full">
+
+            <!-- Slide 1 -->
+            <div class="slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-100"
+                style="background-image: url('https://cosori.com/cdn/shop/articles/steak_temperature_explained_1200x.jpg?v=1727813526');">
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0"
+                style="background-image: url('https://www.inspiredtaste.net/wp-content/uploads/2024/03/Italian-Chopped-Salad-Recipe.jpg');">
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0"
+                style="background-image: url('https://asset.kompas.com/crops/-wbWR0w_tWIrlZB9-PQQM8DvJow=/0x0:1000x667/1200x800/data/photo/2020/11/26/5fbf3e17006f6.jpg');">
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0"
+                style="background-image: url('https://images.sbs.com.au/dims4/default/e7fedaf/2147483647/strip/true/crop/1200x675+0+633/resize/1280x720!/quality/90/?url=http%3A%2F%2Fsbs-au-brightspot.s3.amazonaws.com%2Fdrupal%2Ffood%2Fpublic%2Flotus-sundae.jpg');">
+            </div>
+
+        </div>
+
+
+        <!-- Dots -->
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+            <div class="dot w-3 h-3 bg-white rounded-full opacity-100"></div>
+            <div class="dot w-3 h-3 bg-white rounded-full opacity-50"></div>
+            <div class="dot w-3 h-3 bg-white rounded-full opacity-50"></div>
+            <div class="dot w-3 h-3 bg-white rounded-full opacity-50"></div>
+        </div>
+
+    </section>
+
+    <!-- ================= MENU SECTION ================= -->
+    <section class="py-16 px-8">
+
+        <!-- FILTER -->
+        <div class="flex justify-center gap-4 mb-12 flex-wrap">
+            <button class="filter-btn active-filter px-6 py-2 rounded-lg border" data-category="all">All</button>
+            <button class="filter-btn px-6 py-2 rounded-lg border" data-category="food">Food</button>
+            <button class="filter-btn px-6 py-2 rounded-lg border" data-category="drink">Drink</button>
+            <button class="filter-btn px-6 py-2 rounded-lg border" data-category="dessert">Dessert</button>
+        </div>
+
+        <!-- AUTO GENERATED MENU -->
+        <div id="menuContainer" class="grid md:grid-cols-3 gap-8"></div>
+
+    </section>
+
+    <!-- LINK JS FILE -->
+    <script src="js/menu.js"></script>
+    <!-- USER SCRIPT -->
+    <script>
+        const username = localStorage.getItem("currentUser")
+        document.getElementById("usernameDisplay").textContent = username
+
+        function logout() {
+            localStorage.removeItem("isLoggedIn")
+            localStorage.removeItem("currentUser")
+            window.location.href = "auth.html"
+        }
+    </script>
+
+    <!-- HERO SCRIPT -->
+    <script>
+        const slides = document.querySelectorAll(".slide")
+        const dots = document.querySelectorAll(".dot")
+
+        let current = 0
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove("opacity-100")
+                slide.classList.add("opacity-0")
+                dots[i].classList.remove("opacity-100")
+                dots[i].classList.add("opacity-50")
+            })
+
+            slides[index].classList.remove("opacity-0")
+            slides[index].classList.add("opacity-100")
+            dots[index].classList.remove("opacity-50")
+            dots[index].classList.add("opacity-100")
+        }
+
+        function nextSlide() {
+            current = (current + 1) % slides.length
+            showSlide(current)
+        }
+
+        setInterval(nextSlide, 4000)
+    </script>
+
+    <!-- NAVBAR SCRIPT -->
+    <script>
+        const navbar = document.getElementById("navbar")
+        const logoutBtn = document.getElementById("logoutBtn")
+
+        function setTransparentNav() {
+            navbar.classList.add("bg-transparent", "text-white")
+            navbar.classList.remove("bg-white", "text-[#3e2c23]", "shadow-md")
+
+            logoutBtn.classList.add("bg-white", "text-[#3e2c23]")
+            logoutBtn.classList.remove("bg-[#3e2c23]", "text-white")
+        }
+
+        function setSolidNav() {
+            navbar.classList.remove("bg-transparent", "text-white")
+            navbar.classList.add("bg-white", "text-[#3e2c23]", "shadow-md")
+
+            logoutBtn.classList.remove("bg-white", "text-[#3e2c23]")
+            logoutBtn.classList.add("bg-[#3e2c23]", "text-white")
+        }
+
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 50) {
+                setSolidNav()
+            } else {
+                setTransparentNav()
+            }
+        })
+
+        // Set default saat pertama load
+        setTransparentNav()
+    </script>
+</body>
+
+</html>
